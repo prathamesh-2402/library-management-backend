@@ -1,0 +1,41 @@
+CREATE TABLE branches (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    state VARCHAR(255) NOT NULL,
+    city VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE books (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    isbn BIGINT CHECK (isbn >= 1000000000000 AND isbn <= 9999999999999) NOT NULL,
+    genre VARCHAR(255) NOT NULL,
+    availability VARCHAR(255) NOT NULL,
+    quantity INTEGER CHECK (quantity >= 0 AND quantity <= 150) NOT NULL,
+    branch_id INTEGER REFERENCES branches(id) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE checkouts (
+    id SERIAL PRIMARY KEY,
+    user_name VARCHAR(255) NOT NULL,
+    isbn BIGINT CHECK (isbn >= 1000000000000 AND isbn <= 9999999999999) NOT NULL,
+    checkout_date DATE NOT NULL,
+    due_date DATE NOT NULL,
+    return_date DATE,
+    status VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE transfer (
+    id SERIAL PRIMARY KEY,
+    from_branch VARCHAR(255) NOT NULL,
+    to_branch VARCHAR(255) NOT NULL,
+    isbn BIGINT CHECK (isbn >= 1000000000000 AND isbn <= 9999999999999) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
