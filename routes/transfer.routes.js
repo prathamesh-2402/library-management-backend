@@ -9,12 +9,12 @@ router.post("/", transfer.create);
 router.get("/", transfer.getAll);
 
 //get one branch
-router.get("/:id", transfer.getOne);
+// router.get("/:id", transfer.getOne);
 
 //update a branch
-router.put("/:id", transfer.update);
+// router.put("/:id", transfer.update);
 
 //delete a branch
-router.delete("/:id", transfer.delete);
+// router.delete("/:id", transfer.delete);
 
 module.exports = router;

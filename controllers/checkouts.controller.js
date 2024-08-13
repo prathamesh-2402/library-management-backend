@@ -46,12 +46,16 @@ exports.getAll = async (req, res) => {
         [Op.iLike]: `%${req.query.user_name}%`,
       };
     }
-    if (req.query.city) {
-      filter.city = {
-        [Op.iLike]: `%${req.query.city}%`,
+    if (req.query.dateStart && req.query.dateEnd) {
+      filter.checkout_date = {
+        checkout_date: {
+          [Op.between]: [`%${req.query.dateStart}%`, `%${req.query.dateEnd}%`],
+        },
       };
     }
-    const data = await Checkouts.findAll({ where: filter });
+    const data = await Checkouts.findAll({
+      where: filter,
+    });
     res.status(201).send({
       message: "Checkouts retrieved successfully",
       data: data,
