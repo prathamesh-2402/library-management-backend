@@ -1,5 +1,4 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const cors = require("cors");
 const morgan = require("morgan");
 const bookRouter = require("./routes/books.routes");
@@ -12,7 +11,7 @@ const app = express();
 //middleware
 app.use(cors({origin: ["*", "http://localhost:3000"]}));
 app.options("*", cors());
-//  Logging Middleware
+//Logging Middleware
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

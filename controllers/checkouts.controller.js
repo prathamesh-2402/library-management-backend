@@ -48,9 +48,8 @@ exports.getAll = async (req, res) => {
     }
     if (req.query.dateStart && req.query.dateEnd) {
       filter.checkout_date = {
-        checkout_date: {
-          [Op.between]: [`%${req.query.dateStart}%`, `%${req.query.dateEnd}%`],
-        },
+        [Op.gte]: `%${req.query.dateStart}%`,
+        [Op.lt]: `%${req.query.dateEnd}%`,
       };
     }
     const data = await Checkouts.findAll({

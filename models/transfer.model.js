@@ -9,11 +9,11 @@ const Transfer = sequelize.define("transfer", {
     primaryKey: true,
   },
   from_branch: {
-    type: DataTypes.STRING(255),
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   to_branch: {
-    type: DataTypes.STRING(255),
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   isbn: {
@@ -30,6 +30,6 @@ const Transfer = sequelize.define("transfer", {
     allowNull: true,
     defaultValue: Sequelize.Sequelize.literal("CURRENT_TIMESTAMP"),
   },
-},{ timestamps: false } );
+},{ timestamps: false, tableName: "transfer" } );
 
 module.exports = Transfer;

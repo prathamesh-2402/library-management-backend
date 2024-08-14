@@ -12,7 +12,7 @@ router.get("/", transfer.getAll);
 // router.get("/:id", transfer.getOne);
 
 //update a branch
-// router.put("/:id", transfer.update);
+router.put("/:id", transfer.update);
 
 //delete a branch
 // router.delete("/:id", transfer.delete);
